@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>MindConnect Simulación</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background: linear-gradient(to bottom right, #e1f5fe, #f3e5f5);
+      color: #333;
+    }
+
+    header {
+      background-color: #673ab7;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+
+    h1 {
+      margin: 0;
+    }
+
+    .menu {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 15px;
+      padding: 20px;
+    }
+
+    .menu button {
+      background-color: #9575cd;
+      color: white;
+      border: none;
+      padding: 15px;
+      border-radius: 10px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .menu button:hover {
+      background-color: #7e57c2;
+    }
+
+    .pantalla {
+      display: none;
+      padding: 20px;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+
+    .pantalla.active {
+      display: block;
+    }
+
+    .back-button {
+      margin-top: 20px;
+      background: #333;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 30px;
+      cursor: pointer;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+
+    .frase {
+      font-size: 20px;
+      font-style: italic;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>MindConnect</h1>
+    <p>Tu app de bienestar mental 🌸</p>
+  </header>
+
+  <!-- Menú principal -->
+  <div class="menu" id="menu">
+    <button onclick="mostrarPantalla('frases')">✨ Frases</button>
+    <button onclick="mostrarPantalla('psicologos')">🧠 Psicólogos</button>
+    <button onclick="mostrarPantalla('chat')">💬 Chat Privado</button>
+    <button onclick="mostrarPantalla('grupal')">👥 Chat Grupal</button>
+    <button onclick="mostrarPantalla('video')">📹 Videollamada</button>
+    <button onclick="mostrarPantalla('idiomas')">🌍 Idiomas</button>
+  </div>
+
+  <!-- Pantallas -->
+  <div class="pantalla" id="frases">
+    <h2>✨ Frase del día</h2>
+    <p class="frase" id="fraseMotivacional"></p>
+    <button class="back-button" onclick="volver()">Volver</button>
+  </div>
+
+  <div class="pantalla" id="psicologos">
+    <h2>🧠 Psicólogos</h2>
+    <p>Aquí podrás hablar con profesionales certificados que están para ayudarte. Muy pronto podrás agendar tu primera sesión.</p>
+    <button class="back-button" onclick="volver()">Volver</button>
+  </div>
+
+  <div class="pantalla" id="chat">
+    <h2>💬 Chat Privado</h2>
+    <p>Simulación de un chat privado seguro y confidencial. (Función en desarrollo)</p>
+    <button class="back-button" onclick="volver()">Volver</button>
+  </div>
+
+  <div class="pantalla" id="grupal">
+    <h2>👥 Chat Grupal</h2>
+    <p>Únete a salas de apoyo donde puedes compartir tus experiencias con otras personas.</p>
+    <button class="back-button" onclick="volver()">Volver</button>
+  </div>
+
+  <div class="pantalla" id="video">
+    <h2>📹 Videollamada</h2>
+    <p>Simulación de videollamada. Aquí podrás reunirte con psicólogos o grupos de ayuda.</p>
+    <button class="back-button" onclick="volver()">Volver</button>
+  </div>
+
+  <div class="pantalla" id="idiomas">
+    <h2>🌍 Idiomas</h2>
+    <p>Tu app puede funcionar en todos los idiomas. (Traducción automática muy pronto)</p>
+    <button class="back-button" onclick="volver()">Volver</button>
+  </div>
+
+  <script>
+    const frases = [
+      "Eres más fuerte de lo que crees 💪",
+      "Cada día es una nueva oportunidad 🌅",
+      "No estás sola, siempre hay esperanza 💜",
+      "Tu vida vale mucho, sigue adelante 💫",
+      "Respira profundo, todo estará bien 🧘‍♀️",
+      "Lo mejor aún está por venir 🌈",
+      "Eres luz, aunque a veces no lo veas ✨"
+    ];
+
+    function mostrarPantalla(id) {
+      document.getElementById("menu").style.display = "none";
+      const pantalla = document.getElementById(id);
+      pantalla.classList.add("active");
+
+      if (id === 'frases') {
+        const frase = frases[Math.floor(Math.random() * frases.length)];
+        document.getElementById("fraseMotivacional").textContent = `"${frase}"`;
+      }
+    }
+
+    function volver() {
+      document.querySelectorAll('.pantalla').forEach(p => p.classList.remove('active'));
+      document.getElementById("menu").style.display = "grid";
+    }
+  </script>
+
+</body>
+</html>
